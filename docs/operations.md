@@ -12,15 +12,15 @@ Generate the Xcode project:
 ```bash
 brew install xcodegen
 xcodegen generate
-open FocusHome.xcodeproj
+open AttentionGuardRail.xcodeproj
 ```
 
 ## Signing
 
 Each target needs a real bundle identifier and Apple Developer Team:
 
-- `FocusHome`
-- `FocusHomeWidgets`
+- `AttentionGuardRail`
+- `AttentionGuardRailWidgets`
 - `FocusShieldActionExtension`
 - `FocusShieldConfigurationExtension`
 - `FocusDeviceActivityMonitorExtension`
@@ -28,7 +28,7 @@ Each target needs a real bundle identifier and Apple Developer Team:
 The App Group should be consistent across app and extensions:
 
 ```text
-group.com.enzoterrier.focushome
+group.com.enzoterrier.attentionguardrail
 ```
 
 Family Controls / Screen Time entitlements may require Apple approval before distribution.
@@ -40,7 +40,7 @@ Run on a physical iPhone:
 1. Launch the app.
 2. Request Screen Time permission.
 3. Add both widgets to a home screen.
-4. Tap launcher widget rows and confirm app deep links arrive in Focus Home.
+4. Tap launcher widget rows and confirm app deep links arrive in Attention Guard Rail.
 5. Confirm the 15-second delay completes before opening a target app.
 6. Select apps through `FamilyActivityPicker` after it is implemented.
 7. Confirm shields apply and clear on schedule boundaries.

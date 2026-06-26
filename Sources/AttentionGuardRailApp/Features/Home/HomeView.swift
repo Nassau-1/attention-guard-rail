@@ -18,8 +18,8 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 12) {
           Text("Widgets")
             .font(.headline)
-          WidgetInstructionRow(title: "Top", detail: "Add the Focus Time widget above the dock.")
-          WidgetInstructionRow(title: "Launcher", detail: "Add the Focus Launcher widget below it.")
+          WidgetInstructionRow(title: "Top", detail: "Add the Guard Time widget above the dock.")
+          WidgetInstructionRow(title: "Launcher", detail: "Add the Guard Launcher widget below it.")
         }
 
         VStack(alignment: .leading, spacing: 12) {
@@ -36,7 +36,7 @@ struct HomeView: View {
       }
       .padding(20)
     }
-    .navigationTitle("Focus Home")
+    .navigationTitle("Attention Guard Rail")
     .background(Color.black)
   }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct FocusHomeApp: App {
+struct AttentionGuardRailApp: App {
   @State private var appState = AppState()
 
   var body: some Scene {

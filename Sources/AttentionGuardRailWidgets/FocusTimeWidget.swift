@@ -57,7 +57,7 @@ struct FocusTimeWidget: Widget {
     StaticConfiguration(kind: kind, provider: FocusTimeProvider()) { entry in
       FocusTimeWidgetView(entry: entry)
     }
-    .configurationDisplayName("Focus Time")
+    .configurationDisplayName("Guard Time")
     .description("Minimal time and day widget for the top of the home screen.")
     .supportedFamilies([.systemMedium, .systemLarge])
   }

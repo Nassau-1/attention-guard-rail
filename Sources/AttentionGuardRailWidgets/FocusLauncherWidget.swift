@@ -52,8 +52,8 @@ struct FocusLauncherWidget: Widget {
     StaticConfiguration(kind: kind, provider: FocusLauncherProvider()) { entry in
       FocusLauncherWidgetView(entry: entry)
     }
-    .configurationDisplayName("Focus Launcher")
-    .description("Text-only launcher routed through Focus Home.")
+    .configurationDisplayName("Guard Launcher")
+    .description("Text-only launcher routed through Attention Guard Rail.")
     .supportedFamilies([.systemMedium, .systemLarge])
   }
 }
@@ -64,7 +64,7 @@ struct WidgetLauncherItem: Identifiable {
   var systemImage: String
 
   var focusHomeURL: URL {
-    URL(string: "focushome://launch?target=\(id)")!
+    URL(string: "attentionguardrail://launch?target=\(id)")!
   }
 
   static let defaults: [WidgetLauncherItem] = [

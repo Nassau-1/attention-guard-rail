@@ -17,6 +17,9 @@
 - Add configurable launcher items.
 - Add a 15-second visual unlock delay before opening a selected app.
 - Add per-app session duration selection and automatic reshielding.
+- Add intention prompts for high-friction apps.
+- Add repeated-open friction that increases during the same day.
+- Add a setup checklist for grayscale, badges, notifications, dock cleanup, and widget placement.
 - Add HealthKit read integration for sleep / readiness / recovery metrics if available.
 - Add weather integration after location and privacy UX are designed.
 
@@ -25,4 +28,3 @@
 - Add app icon and widget preview assets.
 - Add privacy manifest if Xcode requires it for the selected APIs.
 - Add screenshots and manual QA checklist.
-

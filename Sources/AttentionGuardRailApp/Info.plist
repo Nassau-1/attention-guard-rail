@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
   <key>CFBundleDisplayName</key>
-  <string>Focus Home</string>
+  <string>Attention Guard Rail</string>
   <key>CFBundleURLTypes</key>
   <array>
     <dict>
       <key>CFBundleURLName</key>
-      <string>com.enzoterrier.focushome</string>
+      <string>com.enzoterrier.attentionguardrail</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>focushome</string>
+        <string>attentionguardrail</string>
       </array>
     </dict>
   </array>

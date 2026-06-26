@@ -2,11 +2,11 @@
 
 ## Summary
 
-Focus Home is a native iOS app built around widgets and Screen Time APIs. The app owns configuration and intentional-access UX. WidgetKit owns home-screen surfaces. Screen Time frameworks own app selection, shielding, and scheduled blocking.
+Attention Guard Rail is a native iOS app built around widgets and Screen Time APIs. The app owns configuration and intentional-access UX. WidgetKit owns home-screen surfaces. Screen Time frameworks own app selection, shielding, and scheduled blocking.
 
 ## Components
 
-### App Target: `FocusHome`
+### App Target: `AttentionGuardRail`
 
 Responsibilities:
 
@@ -14,12 +14,12 @@ Responsibilities:
 - manage curated launcher items
 - request Screen Time authorization
 - show focus schedules
-- route widget deep links through `focushome://`
+- route widget deep links through `attentionguardrail://`
 - show the intentional delay flow before opening distracting apps
 
 The app uses SwiftUI with `@Observable` state on iOS 17+.
 
-### Widget Extension: `FocusHomeWidgets`
+### Widget Extension: `AttentionGuardRailWidgets`
 
 Widgets:
 
@@ -36,8 +36,8 @@ The launcher widget uses links back into the app. iOS widgets should not be trea
 
 1. user taps a blocked app
 2. Screen Time shield appears
-3. primary action sends the user to Focus Home
-4. Focus Home runs the delay/session flow
+3. primary action sends the user to Attention Guard Rail
+4. Attention Guard Rail runs the delay/session flow
 5. app temporarily unblocks the selected app
 6. after the chosen session window, shielding returns
 
@@ -89,7 +89,7 @@ This repo uses XcodeGen because it was created on Windows, where Xcode is unavai
 
 ```bash
 xcodegen generate
-open FocusHome.xcodeproj
+open AttentionGuardRail.xcodeproj
 ```
 
 The first build pass should focus on entitlement/signing correctness before adding more product features.

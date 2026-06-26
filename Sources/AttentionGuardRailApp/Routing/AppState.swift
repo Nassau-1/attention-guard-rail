@@ -10,9 +10,9 @@ final class AppState {
   var focusRules: [FocusRule] = FocusRule.examples
 
   func route(_ url: URL) {
-    guard url.scheme == FocusHomeURL.scheme else { return }
+    guard url.scheme == AttentionGuardRailURL.scheme else { return }
 
-    switch FocusHomeURL.Route(url: url) {
+    switch AttentionGuardRailURL.Route(url: url) {
     case .launch(let id):
       pendingLaunch = launcherItems.first { $0.id == id }
     case .focus:
@@ -31,8 +31,8 @@ enum AppTab: Hashable {
   case focus
 }
 
-enum FocusHomeURL {
-  static let scheme = "focushome"
+enum AttentionGuardRailURL {
+  static let scheme = "attentionguardrail"
 
   enum Route {
     case home
@@ -41,7 +41,7 @@ enum FocusHomeURL {
     case unknown
 
     init(url: URL) {
-      guard url.scheme == FocusHomeURL.scheme else {
+      guard url.scheme == AttentionGuardRailURL.scheme else {
         self = .unknown
         return
       }

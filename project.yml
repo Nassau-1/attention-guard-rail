@@ -1,4 +1,4 @@
-name: FocusHome
+name: AttentionGuardRail
 options:
   minimumXcodeGenVersion: 2.40.0
   deploymentTarget:
@@ -11,36 +11,36 @@ settings:
     MARKETING_VERSION: 0.1.0
 packages: {}
 targets:
-  FocusHome:
+  AttentionGuardRail:
     type: application
     platform: iOS
     sources:
-      - Sources/FocusHomeApp
+      - Sources/AttentionGuardRailApp
     entitlements:
-      path: Sources/FocusHomeApp/FocusHome.entitlements
+      path: Sources/AttentionGuardRailApp/AttentionGuardRail.entitlements
     info:
-      path: Sources/FocusHomeApp/Info.plist
+      path: Sources/AttentionGuardRailApp/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.focushome
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail
     dependencies:
-      - target: FocusHomeWidgets
+      - target: AttentionGuardRailWidgets
       - target: FocusShieldActionExtension
       - target: FocusShieldConfigurationExtension
       - target: FocusDeviceActivityMonitorExtension
 
-  FocusHomeWidgets:
+  AttentionGuardRailWidgets:
     type: app-extension
     platform: iOS
     sources:
-      - Sources/FocusHomeWidgets
+      - Sources/AttentionGuardRailWidgets
     entitlements:
-      path: Sources/FocusHomeWidgets/FocusHomeWidgets.entitlements
+      path: Sources/AttentionGuardRailWidgets/AttentionGuardRailWidgets.entitlements
     info:
-      path: Sources/FocusHomeWidgets/Info.plist
+      path: Sources/AttentionGuardRailWidgets/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.focushome.widgets
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.widgets
 
   FocusShieldActionExtension:
     type: app-extension
@@ -51,7 +51,7 @@ targets:
       path: Sources/FocusShieldActionExtension/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.focushome.shield-action
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.shield-action
 
   FocusShieldConfigurationExtension:
     type: app-extension
@@ -62,7 +62,7 @@ targets:
       path: Sources/FocusShieldConfigurationExtension/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.focushome.shield-configuration
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.shield-configuration
 
   FocusDeviceActivityMonitorExtension:
     type: app-extension
@@ -73,5 +73,5 @@ targets:
       path: Sources/FocusDeviceActivityMonitorExtension/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.focushome.device-activity
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.device-activity
 
