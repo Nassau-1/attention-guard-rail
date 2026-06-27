@@ -16,62 +16,65 @@ targets:
     platform: iOS
     sources:
       - Sources/AttentionGuardRailApp
-    entitlements:
-      path: Sources/AttentionGuardRailApp/AttentionGuardRail.entitlements
-    info:
-      path: Sources/AttentionGuardRailApp/Info.plist
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail
     dependencies:
       - target: AttentionGuardRailWidgets
-      - target: FocusShieldActionExtension
-      - target: FocusShieldConfigurationExtension
-      - target: FocusDeviceActivityMonitorExtension
+        embed: true
+    settings:
+      base:
+        PRODUCT_NAME: AttentionGuardRail
+        PRODUCT_MODULE_NAME: AttentionGuardRail
+        PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail
+        INFOPLIST_FILE: Sources/AttentionGuardRailApp/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/AttentionGuardRailApp/AttentionGuardRail.entitlements
 
   AttentionGuardRailWidgets:
     type: app-extension
     platform: iOS
     sources:
       - Sources/AttentionGuardRailWidgets
-    entitlements:
-      path: Sources/AttentionGuardRailWidgets/AttentionGuardRailWidgets.entitlements
-    info:
-      path: Sources/AttentionGuardRailWidgets/Info.plist
     settings:
       base:
+        PRODUCT_NAME: AttentionGuardRailWidgets
+        PRODUCT_MODULE_NAME: AttentionGuardRailWidgets
         PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.widgets
+        INFOPLIST_FILE: Sources/AttentionGuardRailWidgets/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/AttentionGuardRailWidgets/AttentionGuardRailWidgets.entitlements
 
   FocusShieldActionExtension:
     type: app-extension
     platform: iOS
     sources:
       - Sources/FocusShieldActionExtension
-    info:
-      path: Sources/FocusShieldActionExtension/Info.plist
     settings:
       base:
+        PRODUCT_NAME: FocusShieldActionExtension
+        PRODUCT_MODULE_NAME: FocusShieldActionExtension
         PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.shield-action
+        INFOPLIST_FILE: Sources/FocusShieldActionExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/FocusShieldActionExtension/FocusShieldActionExtension.entitlements
 
   FocusShieldConfigurationExtension:
     type: app-extension
     platform: iOS
     sources:
       - Sources/FocusShieldConfigurationExtension
-    info:
-      path: Sources/FocusShieldConfigurationExtension/Info.plist
     settings:
       base:
+        PRODUCT_NAME: FocusShieldConfigurationExtension
+        PRODUCT_MODULE_NAME: FocusShieldConfigurationExtension
         PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.shield-configuration
+        INFOPLIST_FILE: Sources/FocusShieldConfigurationExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/FocusShieldConfigurationExtension/FocusShieldConfigurationExtension.entitlements
 
   FocusDeviceActivityMonitorExtension:
     type: app-extension
     platform: iOS
     sources:
       - Sources/FocusDeviceActivityMonitorExtension
-    info:
-      path: Sources/FocusDeviceActivityMonitorExtension/Info.plist
     settings:
       base:
+        PRODUCT_NAME: FocusDeviceActivityMonitorExtension
+        PRODUCT_MODULE_NAME: FocusDeviceActivityMonitorExtension
         PRODUCT_BUNDLE_IDENTIFIER: com.enzoterrier.attentionguardrail.device-activity
-
+        INFOPLIST_FILE: Sources/FocusDeviceActivityMonitorExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Sources/FocusDeviceActivityMonitorExtension/FocusDeviceActivityMonitorExtension.entitlements

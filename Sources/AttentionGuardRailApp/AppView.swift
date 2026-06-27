@@ -10,26 +10,27 @@ struct AppView: View {
       NavigationStack {
         HomeView()
       }
-      .tabItem { Label("Home", systemImage: "rectangle.grid.1x2") }
+      .tabItem { Label("Home", systemImage: "iphone") }
       .tag(AppTab.home)
-
-      NavigationStack {
-        LauncherListView()
-      }
-      .tabItem { Label("Apps", systemImage: "text.justify") }
-      .tag(AppTab.apps)
 
       NavigationStack {
         FocusView()
       }
-      .tabItem { Label("Focus", systemImage: "lock.shield") }
+      .tabItem { Label("Focus", systemImage: "brain.head.profile") }
       .tag(AppTab.focus)
+
+      NavigationStack {
+        SettingsView()
+      }
+      .tabItem { Label("Settings", systemImage: "gearshape") }
+      .tag(AppTab.settings)
     }
-    .tint(.primary)
+    .tint(.white)
+    .toolbarBackground(.black, for: .tabBar)
+    .toolbarBackground(.visible, for: .tabBar)
     .preferredColorScheme(.dark)
     .sheet(item: $appState.pendingLaunch) { item in
       IntentionalDelayView(item: item)
     }
   }
 }
-

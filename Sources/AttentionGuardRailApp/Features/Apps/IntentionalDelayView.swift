@@ -10,8 +10,15 @@ struct IntentionalDelayView: View {
   @State private var selectedMinutes = 5
   @State private var isReady = false
 
-  private let delaySeconds = 15.0
   private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+
+  private var delaySeconds: Double {
+    switch item.frictionLevel {
+    case .none: 0
+    case .light: 5
+    case .strict: 15
+    }
+  }
 
   var body: some View {
     VStack(spacing: 24) {
@@ -23,10 +30,11 @@ struct IntentionalDelayView: View {
       VStack(spacing: 8) {
         Text(item.title)
           .font(.largeTitle.weight(.semibold))
-        Text("Choose a session length before opening.")
+        Text(item.frictionLevel == .none ? "Confirm before opening." : "Pick a session length.")
           .font(.body)
           .foregroundStyle(.secondary)
           .multilineTextAlignment(.center)
+          .lineLimit(2)
       }
 
       ProgressRing(progress: progress)
@@ -62,8 +70,13 @@ struct IntentionalDelayView: View {
       Spacer()
     }
     .padding(24)
+    .safeAreaPadding(.bottom, 20)
     .preferredColorScheme(.dark)
     .presentationDetents([.large])
+    .onAppear {
+      isReady = delaySeconds == 0
+      progress = delaySeconds == 0 ? 1 : 0
+    }
     .onReceive(timer) { _ in
       guard !isReady else { return }
       progress = min(1, progress + 0.1 / delaySeconds)
@@ -91,4 +104,3 @@ private struct ProgressRing: View {
 #Preview {
   IntentionalDelayView(item: LauncherItem.defaults[1])
 }
-

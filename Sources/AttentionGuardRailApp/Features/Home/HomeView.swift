@@ -5,57 +5,120 @@ struct HomeView: View {
 
   var body: some View {
     ScrollView {
-      VStack(alignment: .leading, spacing: 24) {
-        VStack(alignment: .leading, spacing: 8) {
-          Text(Date.now, style: .time)
-            .font(.system(size: 56, weight: .semibold, design: .rounded))
-            .monospacedDigit()
-          Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
-            .font(.title3)
-            .foregroundStyle(.secondary)
+      VStack(alignment: .leading, spacing: 20) {
+        HomeHeader()
+
+        SetupCard(title: "Home screen", systemImage: "rectangle.grid.1x2") {
+          SetupRow(status: .ready, title: "Guard Time", detail: "Top widget: time and day.")
+          SetupRow(status: .ready, title: "Guard Launcher", detail: "\(appState.launcherWidgetItems.count) selected rows.")
         }
 
-        VStack(alignment: .leading, spacing: 12) {
-          Text("Widgets")
-            .font(.headline)
-          WidgetInstructionRow(title: "Top", detail: "Add the Guard Time widget above the dock.")
-          WidgetInstructionRow(title: "Launcher", detail: "Add the Guard Launcher widget below it.")
-        }
-
-        VStack(alignment: .leading, spacing: 12) {
-          Text("Default launcher")
-            .font(.headline)
-
-          ForEach(appState.launcherItems) { item in
-            Label(item.title, systemImage: item.systemImage)
-              .font(.body)
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .padding(.vertical, 6)
+        SetupCard(title: "Launcher rows", systemImage: "text.justify") {
+          ForEach(appState.launcherWidgetItems) { item in
+            HStack(spacing: 12) {
+              Image(systemName: item.systemImage)
+                .frame(width: 22)
+              Text(item.title)
+                .font(.body.weight(.medium))
+              Spacer()
+              Text(appState.isDelayed(item) ? "Delay" : "Direct")
+                .font(.caption.weight(.medium))
+                .foregroundStyle(appState.isDelayed(item) ? .yellow : .secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 4)
           }
+        }
+
+        SetupCard(title: "Setup checklist", systemImage: "checklist") {
+          SetupRow(status: .manual, title: "Add both widgets", detail: "Place Guard Time above Guard Launcher on the iPhone home screen.")
+          SetupRow(status: .manual, title: "Choose protected apps", detail: "Use Focus to pick reminder and blocking apps.")
+          SetupRow(status: .ready, title: "Screen Time picker", detail: "Focus opens the native picker and stores its selection in the App Group.")
         }
       }
       .padding(20)
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .foregroundStyle(.white)
     }
-    .navigationTitle("Attention Guard Rail")
-    .background(Color.black)
+    .navigationTitle("Home")
+    .background(Color.black.ignoresSafeArea())
   }
 }
 
-private struct WidgetInstructionRow: View {
+private struct HomeHeader: View {
+  var body: some View {
+    VStack(alignment: .leading, spacing: 8) {
+      Text("Attention Guard Rail")
+        .font(.title.weight(.semibold))
+      Text("Your iPhone home screen stays minimal. The app only configures widgets, delays, and blocking rules.")
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+        .fixedSize(horizontal: false, vertical: true)
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+  }
+}
+
+private struct SetupCard<Content: View>: View {
+  var title: String
+  var systemImage: String
+  @ViewBuilder var content: Content
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Label(title, systemImage: systemImage)
+        .font(.headline)
+      content
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(14)
+    .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
+  }
+}
+
+private struct SetupRow: View {
+  var status: SetupStatus
   var title: String
   var detail: String
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 4) {
-      Text(title)
-        .font(.subheadline.weight(.semibold))
-      Text(detail)
-        .font(.footnote)
-        .foregroundStyle(.secondary)
+    HStack(alignment: .top, spacing: 12) {
+      Image(systemName: status.systemImage)
+        .foregroundStyle(status.color)
+        .frame(width: 20)
+      VStack(alignment: .leading, spacing: 3) {
+        Text(title)
+          .font(.subheadline.weight(.semibold))
+        Text(detail)
+          .font(.footnote)
+          .foregroundStyle(.secondary)
+          .fixedSize(horizontal: false, vertical: true)
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(12)
-    .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
+    .padding(.vertical, 2)
+  }
+}
+
+private enum SetupStatus {
+  case ready
+  case manual
+  case pending
+
+  var systemImage: String {
+    switch self {
+    case .ready: "checkmark.circle.fill"
+    case .manual: "hand.tap.fill"
+    case .pending: "circle.dashed"
+    }
+  }
+
+  var color: Color {
+    switch self {
+    case .ready: .green
+    case .manual: .white
+    case .pending: .secondary
+    }
   }
 }
 
@@ -63,4 +126,3 @@ private struct WidgetInstructionRow: View {
   HomeView()
     .environment(AppState())
 }
-

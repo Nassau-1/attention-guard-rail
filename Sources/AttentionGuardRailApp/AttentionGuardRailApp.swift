@@ -1,6 +1,7 @@
 import SwiftUI
 
 @main
+@MainActor
 struct AttentionGuardRailApp: App {
   @State private var appState = AppState()
 
@@ -14,4 +15,3 @@ struct AttentionGuardRailApp: App {
     }
   }
 }
-

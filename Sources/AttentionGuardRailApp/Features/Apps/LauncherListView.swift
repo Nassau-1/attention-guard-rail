@@ -5,18 +5,41 @@ struct LauncherListView: View {
 
   var body: some View {
     List {
-      Section("Launcher") {
+      Section("Launcher widget") {
         ForEach(appState.launcherItems) { item in
-          LauncherRow(item: item)
-            .contentShape(Rectangle())
-            .onTapGesture {
-              appState.pendingLaunch = item
-            }
+          Toggle(isOn: Binding(
+            get: { appState.isInLauncher(item) },
+            set: { appState.setLauncher(item, isSelected: $0) }
+          )) {
+            LauncherRow(item: item, detail: appState.isDelayed(item) ? "Widget row, delayed opening" : "Widget row, direct opening")
+          }
         }
       }
 
-      Section("Notes") {
-        Text("iOS only opens apps that expose URL schemes or universal links. Keep this launcher curated instead of trying to enumerate every installed app.")
+      Section("Delayed opening") {
+        ForEach(appState.launcherItems) { item in
+          HStack(spacing: 12) {
+            Toggle(isOn: Binding(
+              get: { appState.isDelayed(item) },
+              set: { appState.setDelayed(item, isSelected: $0) }
+            )) {
+              LauncherRow(item: item, detail: item.frictionLevel.title)
+            }
+
+            Button {
+              appState.pendingLaunch = item
+            } label: {
+              Image(systemName: "hourglass")
+                .frame(width: 30, height: 30)
+            }
+            .buttonStyle(.bordered)
+            .accessibilityLabel("Test \(item.title) delay")
+          }
+        }
+      }
+
+      Section("Current limit") {
+        Label("Native app selection will use the iOS Screen Time picker. This build uses curated app rows so the widget and delay flow can be tested first.", systemImage: "info.circle")
           .font(.footnote)
           .foregroundStyle(.secondary)
       }
@@ -29,6 +52,7 @@ struct LauncherListView: View {
 
 private struct LauncherRow: View {
   var item: LauncherItem
+  var detail: String
 
   var body: some View {
     HStack(spacing: 12) {
@@ -36,14 +60,11 @@ private struct LauncherRow: View {
         .frame(width: 24)
       VStack(alignment: .leading, spacing: 3) {
         Text(item.title)
-        Text(item.frictionLevel.title)
+        Text(detail)
           .font(.caption)
           .foregroundStyle(.secondary)
       }
       Spacer()
-      Image(systemName: "chevron.right")
-        .font(.caption)
-        .foregroundStyle(.tertiary)
     }
     .padding(.vertical, 4)
   }
@@ -53,4 +74,3 @@ private struct LauncherRow: View {
   LauncherListView()
     .environment(AppState())
 }
-

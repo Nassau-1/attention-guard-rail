@@ -11,6 +11,10 @@ import ManagedSettings
 final class ScreenTimeService {
   var authorizationState: ScreenTimeAuthorizationState = .unknown
 
+  #if canImport(ManagedSettings)
+  private let store = ManagedSettingsStore()
+  #endif
+
   func requestAuthorization() async {
     #if canImport(FamilyControls)
     do {
@@ -24,11 +28,17 @@ final class ScreenTimeService {
     #endif
   }
 
-  func applyShield() {
+  func applyShield(selection: FamilyActivitySelection) {
     #if canImport(ManagedSettings) && canImport(FamilyControls)
-    let store = ManagedSettingsStore()
-    // TODO: Load the persisted FamilyActivitySelection and assign its tokens.
-    store.shield.applications = []
+    store.shield.applications = selection.applicationTokens
+    store.shield.applicationCategories = .specific(selection.categoryTokens)
+    store.shield.webDomains = selection.webDomainTokens
+    #endif
+  }
+
+  func clearShield() {
+    #if canImport(ManagedSettings)
+    store.clearAllSettings()
     #endif
   }
 
@@ -62,4 +72,3 @@ enum ScreenTimeAuthorizationState: Equatable {
     }
   }
 }
-
