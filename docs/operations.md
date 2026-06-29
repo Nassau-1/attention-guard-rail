@@ -2,6 +2,8 @@
 
 ## Local Development
 
+Active device development is paused as of 2026-06-29. The native Screen Time capability path needs Apple Developer provisioning that is not currently justified for this personal open-source utility.
+
 Supported development machine:
 
 - macOS with Xcode for compilation and device testing
@@ -17,6 +19,8 @@ open AttentionGuardRail.xcodeproj
 
 ## Signing
 
+This section documents what would be required if the project resumes.
+
 Each target needs a real bundle identifier and Apple Developer Team:
 
 - `AttentionGuardRail`
@@ -31,9 +35,11 @@ The App Group should be consistent across app and extensions:
 group.com.enzoterrier.attentionguardrail
 ```
 
-Family Controls / Screen Time entitlements may require Apple approval before distribution.
+Family Controls / Screen Time entitlements require provisioning support beyond a free Apple Personal Team.
 
 ## Manual QA
+
+Deferred until the signing and entitlement path is justified.
 
 Run on a physical iPhone:
 
@@ -53,4 +59,3 @@ Do not publish until:
 - App Store privacy labels are drafted
 - HealthKit and WeatherKit usage strings are only added if those features are active
 - screenshots do not expose private health, usage, or notification data
-

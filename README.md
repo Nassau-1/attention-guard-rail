@@ -1,19 +1,29 @@
 # Attention Guard Rail
 
-Personal iPhone app for making the phone more minimal, more intentional, and deliberately less stimulating.
+Attention Guard Rail is a paused open-source iPhone concept for making a phone feel quieter, more intentional, and less stimulating.
 
-## Current Status
+The project explored a native iOS approach to a "minimal phone" workflow:
 
-2026-06-26: initial repo scaffold. The repository contains the native iOS architecture, SwiftUI screens, WidgetKit widgets, Screen Time extension skeletons, and a public product roadmap. It still needs to be opened on macOS with Xcode, generated with XcodeGen, signed, and tested on a real iPhone.
+- a calm top widget for time, day, and future context cards
+- a text-first launcher widget for a small set of intentional app links
+- a companion app for focus rules, app selection, schedules, and deliberate delay before opening distracting apps
+- Screen Time integration for real app shielding, if Apple provisioning allows it
 
-## Purpose
+## Status
 
-Attention Guard Rail is intended to make an iPhone feel closer to a minimal dumb phone by replacing the primary home screen with two widgets:
+Paused as of 2026-06-29.
 
-- a top information widget with time, day, and future weather / health slots
-- a text launcher widget with minimal app links such as LinkedIn, Instagram, YouTube, and Mail
+The architecture is intentionally Apple-native and technically plausible, but the key Screen Time capabilities require Apple Developer provisioning beyond a free Personal Team. Paying for Apple Developer Program membership only to replace a relatively low-cost personal focus app does not make economic sense for this project right now.
 
-The companion app manages focus rules, app selection, schedules, and intentional-access friction before selected apps can be opened.
+The repository is kept public as a clean product and architecture scaffold. It may be resumed if Apple Developer provisioning becomes justified by another project, or if the scope changes to a reduced mode without real app shielding.
+
+## What This Repo Contains
+
+- SwiftUI app shell for setup, launcher configuration, focus rules, and intentional-delay flows
+- WidgetKit extension skeletons for the time/date widget and text launcher widget
+- Screen Time extension skeletons for shield UI, shield actions, and device activity monitoring
+- Public product roadmap, architecture notes, and decision records
+- A documented public/private boundary so research notes and private inspiration do not enter the public repo
 
 ## Architecture
 
@@ -43,6 +53,8 @@ project.yml
 
 ## How To Run Locally
 
+This repo is currently a documented scaffold. The full Screen Time flow is not expected to run end-to-end on a physical iPhone without paid Apple Developer provisioning for the required capability path.
+
 On macOS with Xcode installed:
 
 ```bash
@@ -57,7 +69,7 @@ Then in Xcode:
 2. Replace bundle identifiers if needed.
 3. Add the App Group capability to the app and extensions.
 4. Add Screen Time / Family Controls entitlements where Apple allows them.
-5. Run on a physical iPhone. Screen Time APIs are not meaningfully testable on this Windows machine.
+5. Run on a physical iPhone.
 
 ## Environment Variables
 
@@ -71,6 +83,8 @@ iOS does not allow a third-party app to arbitrarily replace SpringBoard, enumera
 - `ManagedSettings` for shielding selected apps
 - `DeviceActivity` for schedules and usage thresholds
 - Widget URL links for the launcher flow
+
+This project was intended as a personal open-source alternative, not a paid product. The annual Apple Developer Program cost is not justified by this single use case, so development is paused until there is another reason to maintain an Apple Developer account or until the project changes scope.
 
 Bevel integration is not included in the MVP. The likely route is HealthKit if Bevel writes the desired metrics to Apple Health.
 

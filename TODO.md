@@ -1,18 +1,18 @@
-# TODO
+# Project Backlog
 
-## MVP
+## Status
 
-- Generate the Xcode project on macOS with `xcodegen generate`.
-- Configure real bundle identifiers and Apple Developer Team IDs.
-- Enable App Group for the app and all extensions.
-- Request / verify Screen Time entitlement availability for personal use.
-- Compile the app and fix any API drift from the generated skeleton.
-- Test `FamilyActivityPicker` on a physical iPhone.
-- Test shielding selected apps with `ManagedSettingsStore`.
-- Test schedule start / end behavior with `DeviceActivityCenter`.
-- Test widget deep links into the app and curated app URL schemes.
+Paused as of 2026-06-29.
 
-## Product
+The remaining MVP work requires physical-device provisioning for Apple's Screen Time capability path. A paid Apple Developer Program membership is not economically justified for a personal open-source utility whose goal was to replace a relatively low-cost commercial app.
+
+## Resume Criteria
+
+- Resume only if Apple Developer provisioning becomes available for another reason, or if the app is rescoped to avoid Screen Time entitlements.
+- If resumed with a paid Apple Developer account, configure real bundle identifiers, App Group, Family Controls, Managed Settings, Device Activity, and physical-device profiles.
+- If resumed without paid provisioning, create a reduced "demo mode" that keeps the UI, launcher, delay, and session logic but removes real app shielding.
+
+## Deferred Product Work
 
 - Add configurable launcher items.
 - Add a 15-second visual unlock delay before opening a selected app.
@@ -25,6 +25,5 @@
 
 ## Release Hygiene
 
-- Add app icon and widget preview assets.
-- Add privacy manifest if Xcode requires it for the selected APIs.
-- Add screenshots and manual QA checklist.
+- Keep public docs neutral and clear that the project is paused for economic/provisioning reasons.
+- Do not add signing material, provisioning profiles, or private account details to the repo.

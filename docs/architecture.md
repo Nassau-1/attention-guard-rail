@@ -4,6 +4,8 @@
 
 Attention Guard Rail is a native iOS app built around widgets and Screen Time APIs. The app owns configuration and intentional-access UX. WidgetKit owns home-screen surfaces. Screen Time frameworks own app selection, shielding, and scheduled blocking.
 
+Development is paused as of 2026-06-29 because the correct Screen Time capability path requires Apple Developer provisioning that is not economically justified for this personal open-source utility on its own. See [ADR-002](decisions/ADR-002-pause-screen-time-build.md).
+
 ## Components
 
 ### App Target: `AttentionGuardRail`
@@ -85,6 +87,8 @@ Therefore this app should be implemented as:
 
 ## Build Flow
 
+The build flow below is retained for reference if the project resumes.
+
 This repo uses XcodeGen because it was created on Windows, where Xcode is unavailable. On macOS:
 
 ```bash
@@ -92,5 +96,4 @@ xcodegen generate
 open AttentionGuardRail.xcodeproj
 ```
 
-The first build pass should focus on entitlement/signing correctness before adding more product features.
-
+The first resumed build pass should focus on entitlement/signing correctness before adding more product features.

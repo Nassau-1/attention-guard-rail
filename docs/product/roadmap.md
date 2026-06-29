@@ -2,6 +2,12 @@
 
 This project is a personal, local-first iPhone app for making the phone feel minimal, intentional, and boring.
 
+## Current Direction
+
+Paused as of 2026-06-29.
+
+The intended native implementation depends on Apple's Screen Time capability path. That path is the correct technical architecture for real app selection, shielding, and usage windows, but it requires Apple Developer provisioning that is not economically justified for this personal open-source utility on its own.
+
 ## Product Principles
 
 - Keep the first screen useful, not stimulating.
@@ -13,6 +19,8 @@ This project is a personal, local-first iPhone app for making the phone feel min
 
 ## MVP
 
+The MVP below describes the original target, not active work.
+
 - Top widget with time and day.
 - Text launcher widget for selected apps.
 - App setup screen for widget instructions and launcher defaults.
@@ -22,6 +30,8 @@ This project is a personal, local-first iPhone app for making the phone feel min
 - Schedule model for recurring blocked windows.
 
 ## V1 Priorities
+
+These priorities are deferred until paid Apple Developer provisioning is justified by another need, or until the app is rescoped away from real Screen Time controls.
 
 - Persist launcher configuration in App Group storage.
 - Add editable launcher rows with title, SF Symbol, URL scheme, fallback URL, and friction level.
@@ -36,6 +46,7 @@ This project is a personal, local-first iPhone app for making the phone feel min
 
 ## Later Ideas
 
+- Reduced local demo mode without app shielding, for testing the launcher, delay, session, and settings UX under free provisioning.
 - Optional HealthKit card for sleep, recovery, or readiness values available in Apple Health.
 - Optional weather card after explicit location/weather permission design.
 - Optional iOS Focus Mode and Shortcuts integration.
@@ -45,4 +56,3 @@ This project is a personal, local-first iPhone app for making the phone feel min
 ## Public Boundary
 
 The public repo should contain code, neutral product docs, and implementation notes only. Competitive research, app screenshots, store notes, and source-specific feature analysis belong in local ignored files under `private/`.
-
